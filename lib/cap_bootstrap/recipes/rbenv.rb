@@ -8,16 +8,16 @@ Capistrano::Configuration.instance(:must_exist).load do
       run "#{sudo} apt-get -y install curl git-core"
       run "curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash"
       bashrc = <<-BASHRC
-  if [ -d $HOME/.rbenv ]; then 
-    export PATH="$HOME/.rbenv/bin:$PATH" 
-    eval "$(rbenv init -)" 
+  export RBENV_ROOT="${HOME}/.rbenv"
+  if [ -d "${RBENV_ROOT}" ]; then
+    export PATH="${RBENV_ROOT}/bin:${PATH}"
+    eval "$(rbenv init -)"
   fi
   BASHRC
       put bashrc, "/tmp/rbenvrc"
       run "cat /tmp/rbenvrc ~/.bashrc > ~/.bashrc.tmp"
       run "mv ~/.bashrc.tmp ~/.bashrc"
-      run %q{export PATH="$HOME/.rbenv/bin:$PATH"}
-      run %q{eval "$(rbenv init -)"}
+      run "source ~/.bashrc"
       run "#{sudo} rbenv #{rbenv_bootstrap}"
       run "rbenv install #{ruby_version}"
       run "rbenv global #{ruby_version}"
