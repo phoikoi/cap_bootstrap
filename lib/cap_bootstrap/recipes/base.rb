@@ -15,7 +15,8 @@ Capistrano::Configuration.instance(:must_exist).load do
       run "#{sudo} cp /usr/share/zoneinfo/UTC /etc/localtime"
       run "#{sudo} dpkg-reconfigure -f noninteractive tzdata"
       run "#{sudo} apt-get -y update"
-      run "#{sudo} apt-get -y install python-software-properties"
+      run "#{sudo} apt-get -y upgrade"
+      run "#{sudo} apt-get -y install software-properties-common"
     end
   end
 end
