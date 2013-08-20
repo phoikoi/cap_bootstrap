@@ -8,7 +8,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     desc "Install the latest stable release of PostgreSQL."
     task :install, roles: :db, only: {primary: true} do
       run "#{sudo} apt-get -y update"
-      run "#{sudo} apt-get -y install postgresql-9.2 postgresql-contrib-9.2 libpq-dev"
+      run "#{sudo} apt-get -y install postgresql postgresql-contrib libpq-dev"
     end
     after "deploy:install", "postgresql:install"
 
