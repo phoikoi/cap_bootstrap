@@ -2,29 +2,11 @@ upstream unicorn_<%= application %> {
   server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=0;
 }
 
-# Redirect all HTTP traffic to HTTPS
-# server {
-#   listen 80;
-#   return 301 https://$host$request_uri;
-# }
-
-# Redirect www.example.com to example.com
-# server {
-#   listen 443;
-#   server_name www.example.com;
-#   rewrite ^(.*) http://example.com$1 permanent;
-# }
-
 server {
   listen 80 default deferred; # Remove default and deferred for multiple apps on a single server
-  # listen 443 default deferred;
   
   server_name <%= domain %>;
   root <%= current_path %>/public;
-  
-  # ssl on;
-  # ssl_certificate /etc/nginx/ssl/server.crt;
-  # ssl_certificate_key /etc/nginx/ssl/server.key;
 
   location ^~ /assets/ {
     gzip_static on;
