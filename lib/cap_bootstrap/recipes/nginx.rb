@@ -10,11 +10,13 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Setup nginx ssl configuration"
     task :ssl, roles: :web do
-      upload "#{certificate_location}", "/tmp/server.crt"
-      upload "#{certificate_key_location}", "/tmp/server.key"
-      run "#{sudo} mkdir -p /etc/nginx/ssl"
-      run "#{sudo} mv /tmp/server.crt /etc/nginx/ssl/server.crt"
-      run "#{sudo} mv /tmp/server.key /etc/nginx/ssl/server.key"
+      if ssl
+        upload "#{certificate_location}", "/tmp/server.crt"
+        upload "#{certificate_key_location}", "/tmp/server.key"
+        run "#{sudo} mkdir -p /etc/nginx/ssl"
+        run "#{sudo} mv /tmp/server.crt /etc/nginx/ssl/server.crt"
+        run "#{sudo} mv /tmp/server.key /etc/nginx/ssl/server.key"
+      end
     end
     after "deploy:setup", "nginx:ssl"
 
