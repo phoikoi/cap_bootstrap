@@ -10,7 +10,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Setup nginx ssl configuration"
     task :ssl, roles: :web do
-      if ssl
+      if `#{ssl}` == true
         upload "#{certificate_location}", "/tmp/server.crt"
         upload "#{certificate_key_location}", "/tmp/server.key"
         run "#{sudo} mkdir -p /etc/nginx/ssl"
