@@ -12,6 +12,10 @@ set :scm, "git"
 set :repository, "<%= git_url %>"
 set :branch, "master"
 
+set :ssl, false
+set :certificate_location, "../ssl/#{domain}/server.crt"
+set :certificate_key_location, "../ssl/#{domain}/server.key"
+
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
