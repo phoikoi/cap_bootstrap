@@ -1,5 +1,6 @@
 require 'cap_bootstrap/recipes/base'
 require 'cap_bootstrap/recipes/check'
+require 'cap_bootstrap/recipes/ssl'
 require 'cap_bootstrap/recipes/nginx'
 require 'cap_bootstrap/recipes/nodejs'
 require 'cap_bootstrap/recipes/postgresql'
