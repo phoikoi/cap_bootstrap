@@ -1,8 +1,8 @@
 Capistrano::Configuration.instance(:must_exist).load do
   namespace :nginx do
-    desc "Install latest stable release of nginx"
+    desc "Install latest mainline release of nginx"
     task :install, roles: :web do
-      run "#{sudo} add-apt-repository -y ppa:nginx/stable"
+      run "#{sudo} add-apt-repository -y ppa:nginx/development"
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install nginx"
     end
@@ -12,7 +12,6 @@ Capistrano::Configuration.instance(:must_exist).load do
     task :setup, roles: :web do
       template "nginx_unicorn.erb", "/tmp/nginx_conf"
       run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application}"
-      run "#{sudo} rm -f /etc/nginx/sites-enabled/default"
       restart
     end
     after "deploy:setup", "nginx:setup"
