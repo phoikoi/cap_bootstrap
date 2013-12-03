@@ -8,7 +8,8 @@ Capistrano::Configuration.instance(:must_exist).load do
     desc "Install the latest stable release of PostgreSQL."
     task :install, roles: :db, only: {primary: true} do
       run "#{sudo} wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -"
-      run "#{sudo} echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' > /etc/apt/sources.list.d/postgresql.list"
+      run "#{sudo} echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' > /tmp/postgresql.list"
+      run "#{sudo} mv /tmp/postgresql.list /etc/apt/sources.list.d/postgresql.list"
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install postgresql postgresql-contrib libpq-dev"
     end
