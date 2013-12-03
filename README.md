@@ -1,6 +1,6 @@
 # Cap Bootstrap
 
-Capistrano tasks for deploying Rails applications using Ubuntu 10.04, rbenv, nginx, Unicorn and PostgreSQL. Based on the excellent Railscasts by Ryan Bates, with permission of course. If you are new to Capistrano or setting up a VPS, I highly recommend subscribing to his pro screencasts and watching the following:
+Capistrano tasks for deploying Rails applications using Ubuntu 12.04, rbenv, nginx, Unicorn and PostgreSQL. Based on the excellent Railscasts by Ryan Bates, with permission of course. If you are new to Capistrano or setting up a VPS, I highly recommend subscribing to his pro screencasts and watching the following:
 
 * [Deploying to a VPS](http://railscasts.com/episodes/335-deploying-to-a-vps) (Pro)
 * [Capistrano Tasks](http://railscasts.com/episodes/133-capistrano-tasks-revised) (Free)
@@ -11,7 +11,7 @@ I am not affiliated with Railscasts, I'm just a fan.
 ## Requirements
 
 * Capistrano
-* Fresh Ubuntu 10.04 or 11.10 install
+* Fresh Ubuntu 12.04 install
 
 ## Installation
 
@@ -26,7 +26,7 @@ And then execute:
 
 ## Usage
 
-Setup a new Ubuntu 10.04 slice. Add a user called deployer with sudo privileges.
+Setup a new Ubuntu 12.04 slice. Add a user called deployer with sudo privileges.
 
 In your project, run the following:
 
@@ -59,8 +59,8 @@ Shown below are the default advanced settings, but they can overridden.
 
 ### Ruby
 
-    set :ruby_version, "1.9.3-p125"
-    set :rbenv_bootstrap, "bootstrap-ubuntu-10-04" # Or bootstrap-ubuntu-11-10
+    set :ruby_version, "2.0.0-p247"
+    set :rbenv_bootstrap, "bootstrap-ubuntu-12-04"
 
 ### Unicorn
 
@@ -72,11 +72,8 @@ Shown below are the default advanced settings, but they can overridden.
 
 ## Future Plans
 
-Version 0.1 uses Ryan's recipes pulled directly from Railscast episode #337 Capistrano Recipes. You will always be able to access this version
-with tag v0.1.
-
-Future versions will incorporate optional installs such as MySQL, Apache, Phusion Passenger and additional server config such as setting a hostname.
-Also considering changes to allow deploying multiple apps onto a single server and provisioning Linode slices using their api.
+Version 0.1 uses Ryan's recipes pulled directly from Railscast episode #337 Capistrano Recipes.
+You will always be able to access this version with tag v0.1.
 
 ## Alternatives
 
