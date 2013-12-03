@@ -2,7 +2,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :nginx do
     desc "Install latest mainline release of nginx"
     task :install, roles: :web do
-      run "#{sudo} add-apt-repository -y ppa:nginx/development"
+      run "#{sudo} add-apt-repository -y ppa:nginx/stable"
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install nginx"
     end
