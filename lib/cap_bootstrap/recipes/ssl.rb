@@ -8,6 +8,8 @@ Capistrano::Configuration.instance(:must_exist).load do
       run "#{sudo} mv /tmp/server.crt /etc/nginx/ssl/server.crt"
       run "#{sudo} mv /tmp/server.key /etc/nginx/ssl/server.key"
     end
-    before "nginx:setup", "ssl:copy"
+    if :ssl do
+      before "nginx:setup", "ssl:copy"
+    end
   end
 end
